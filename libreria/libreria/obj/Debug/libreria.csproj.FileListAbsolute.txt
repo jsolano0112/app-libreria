@@ -1,0 +1,11 @@
+C:\Users\LENOVO\Desktop\libreria\libreria\libreria\bin\Debug\libreria.exe.config
+C:\Users\LENOVO\Desktop\libreria\libreria\libreria\bin\Debug\libreria.exe
+C:\Users\LENOVO\Desktop\libreria\libreria\libreria\bin\Debug\libreria.pdb
+C:\Users\LENOVO\Desktop\libreria\libreria\libreria\obj\Debug\libreria.csproj.AssemblyReference.cache
+C:\Users\LENOVO\Desktop\libreria\libreria\libreria\obj\Debug\libreria.csproj.SuggestedBindingRedirects.cache
+C:\Users\LENOVO\Desktop\libreria\libreria\libreria\obj\Debug\libreria.Form1.resources
+C:\Users\LENOVO\Desktop\libreria\libreria\libreria\obj\Debug\libreria.Properties.Resources.resources
+C:\Users\LENOVO\Desktop\libreria\libreria\libreria\obj\Debug\libreria.csproj.GenerateResource.cache
+C:\Users\LENOVO\Desktop\libreria\libreria\libreria\obj\Debug\libreria.csproj.CoreCompileInputs.cache
+C:\Users\LENOVO\Desktop\libreria\libreria\libreria\obj\Debug\libreria.exe
+C:\Users\LENOVO\Desktop\libreria\libreria\libreria\obj\Debug\libreria.pdb
