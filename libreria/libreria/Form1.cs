@@ -46,5 +46,17 @@ namespace libreria
                 MessageBox.Show("Error");
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            SqlCommand comando = new SqlCommand("SELECT * FROM libros",conexion);
+            SqlDataAdapter adaptador = new SqlDataAdapter();
+            adaptador.SelectCommand = comando;
+            DataTable tabla = new DataTable();
+
+            //Llenar la tabla
+            adaptador.Fill(tabla);
+            dataGridView1.DataSource = tabla;
+        }
     }
 }

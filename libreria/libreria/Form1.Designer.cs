@@ -34,11 +34,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.boton_guardar = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.boton_subirfoto = new System.Windows.Forms.Button();
+            this.boton_buscar = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox1
@@ -91,15 +94,15 @@
             this.label4.TabIndex = 5;
             this.label4.Text = "Imagen";
             // 
-            // button1
+            // boton_guardar
             // 
-            this.button1.Location = new System.Drawing.Point(154, 318);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Guardar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.boton_guardar.Location = new System.Drawing.Point(154, 318);
+            this.boton_guardar.Name = "boton_guardar";
+            this.boton_guardar.Size = new System.Drawing.Size(75, 23);
+            this.boton_guardar.TabIndex = 6;
+            this.boton_guardar.Text = "Guardar";
+            this.boton_guardar.UseVisualStyleBackColor = true;
+            this.boton_guardar.Click += new System.EventHandler(this.button1_Click);
             // 
             // comboBox1
             // 
@@ -122,24 +125,44 @@
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
             // 
-            // button2
+            // boton_subirfoto
             // 
-            this.button2.Location = new System.Drawing.Point(136, 121);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(121, 23);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "Seleccionar";
-            this.button2.UseVisualStyleBackColor = true;
+            this.boton_subirfoto.Location = new System.Drawing.Point(136, 121);
+            this.boton_subirfoto.Name = "boton_subirfoto";
+            this.boton_subirfoto.Size = new System.Drawing.Size(121, 23);
+            this.boton_subirfoto.TabIndex = 9;
+            this.boton_subirfoto.Text = "Seleccionar";
+            this.boton_subirfoto.UseVisualStyleBackColor = true;
+            // 
+            // boton_buscar
+            // 
+            this.boton_buscar.Location = new System.Drawing.Point(316, 29);
+            this.boton_buscar.Name = "boton_buscar";
+            this.boton_buscar.Size = new System.Drawing.Size(110, 23);
+            this.boton_buscar.TabIndex = 10;
+            this.boton_buscar.Text = "Buscar Libros";
+            this.boton_buscar.UseVisualStyleBackColor = true;
+            this.boton_buscar.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(316, 73);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(472, 106);
+            this.dataGridView1.TabIndex = 11;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.boton_buscar);
+            this.Controls.Add(this.boton_subirfoto);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.boton_guardar);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -150,6 +173,7 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -163,10 +187,12 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button boton_guardar;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button boton_subirfoto;
+        private System.Windows.Forms.Button boton_buscar;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 
