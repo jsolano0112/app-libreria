@@ -18,6 +18,8 @@ namespace libreria
         public Form1()
         {
             InitializeComponent();
+
+            datosTablas();
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -73,14 +75,7 @@ namespace libreria
 
         private void button3_Click(object sender, EventArgs e)
         {
-            SqlCommand comando = new SqlCommand("SELECT * FROM libros", conexion);
-            SqlDataAdapter adaptador = new SqlDataAdapter();
-            adaptador.SelectCommand = comando;
-            DataTable tabla = new DataTable();
-
-            //Llenar la tabla
-            adaptador.Fill(tabla);
-            dataGridView1.DataSource = tabla;
+           
         }
 
         private void boton_subirfoto_Click(object sender, EventArgs e)
@@ -99,6 +94,41 @@ namespace libreria
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             
+        }
+
+        private void btn_editar_Click(object sender, EventArgs e)
+        {
+            Image img = pb_foto.Image;
+            byte[] arreglo;
+            ImageConverter convertidor = new ImageConverter();
+            arreglo = (byte[])convertidor.ConvertTo(img, typeof(byte[]));
+
+            string query = "  UPDATE libros SET titulo = @titulo, categoria = @categoria, descripcion = @descripcion, img = @img, ruta = @ruta WHERE id = @id";
+            conexion.Open();
+            SqlCommand comando = new SqlCommand(query,conexion);
+            comando.Parameters.AddWithValue("@titulo", txt_titulo.Text);
+            comando.Parameters.AddWithValue("@categoria", cb_categoria.SelectedIndex);
+            comando.Parameters.AddWithValue("@descripcion", txt_descrip.Text);
+            comando.Parameters.AddWithValue("@img", arreglo);
+            comando.Parameters.AddWithValue("@ruta", ImageUrl);
+            comando.Parameters.AddWithValue("@id", id.Text);
+            comando.ExecuteNonQuery();
+            conexion.Close();
+            MessageBox.Show("Libro actualizado.");
+
+        }
+
+        private void datosTablas()
+        {
+            SqlCommand comando = new SqlCommand("SELECT * FROM libros", conexion);
+            SqlDataAdapter adaptador = new SqlDataAdapter();
+            adaptador.SelectCommand = comando;
+            DataTable tabla = new DataTable();
+
+            //Llenar la tabla
+            adaptador.Fill(tabla);
+            dataGridView1.DataSource = tabla;
+
         }
     }
 }

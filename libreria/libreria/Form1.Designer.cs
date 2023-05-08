@@ -38,8 +38,10 @@
             this.cb_categoria = new System.Windows.Forms.ComboBox();
             this.pb_foto = new System.Windows.Forms.PictureBox();
             this.boton_subirfoto = new System.Windows.Forms.Button();
-            this.boton_buscar = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btn_borrar = new System.Windows.Forms.Button();
+            this.btn_editar = new System.Windows.Forms.Button();
+            this.id = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pb_foto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -135,32 +137,51 @@
             this.boton_subirfoto.UseVisualStyleBackColor = true;
             this.boton_subirfoto.Click += new System.EventHandler(this.boton_subirfoto_Click);
             // 
-            // boton_buscar
-            // 
-            this.boton_buscar.Location = new System.Drawing.Point(316, 29);
-            this.boton_buscar.Name = "boton_buscar";
-            this.boton_buscar.Size = new System.Drawing.Size(110, 23);
-            this.boton_buscar.TabIndex = 10;
-            this.boton_buscar.Text = "Buscar Libros";
-            this.boton_buscar.UseVisualStyleBackColor = true;
-            this.boton_buscar.Click += new System.EventHandler(this.button3_Click);
-            // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(316, 73);
+            this.dataGridView1.Location = new System.Drawing.Point(316, 12);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(472, 157);
+            this.dataGridView1.Size = new System.Drawing.Size(452, 239);
             this.dataGridView1.TabIndex = 11;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // btn_borrar
+            // 
+            this.btn_borrar.Location = new System.Drawing.Point(407, 266);
+            this.btn_borrar.Name = "btn_borrar";
+            this.btn_borrar.Size = new System.Drawing.Size(75, 23);
+            this.btn_borrar.TabIndex = 12;
+            this.btn_borrar.Text = "Borrar";
+            this.btn_borrar.UseVisualStyleBackColor = true;
+            // 
+            // btn_editar
+            // 
+            this.btn_editar.Location = new System.Drawing.Point(316, 266);
+            this.btn_editar.Name = "btn_editar";
+            this.btn_editar.Size = new System.Drawing.Size(75, 23);
+            this.btn_editar.TabIndex = 13;
+            this.btn_editar.Text = "Editar";
+            this.btn_editar.UseVisualStyleBackColor = true;
+            this.btn_editar.Click += new System.EventHandler(this.btn_editar_Click);
+            // 
+            // id
+            // 
+            this.id.Location = new System.Drawing.Point(136, 7);
+            this.id.Name = "id";
+            this.id.Size = new System.Drawing.Size(30, 20);
+            this.id.TabIndex = 14;
+            this.id.Text = "id";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.id);
+            this.Controls.Add(this.btn_editar);
+            this.Controls.Add(this.btn_borrar);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.boton_buscar);
             this.Controls.Add(this.boton_subirfoto);
             this.Controls.Add(this.pb_foto);
             this.Controls.Add(this.cb_categoria);
@@ -193,8 +214,10 @@
         private System.Windows.Forms.ComboBox cb_categoria;
         private System.Windows.Forms.PictureBox pb_foto;
         private System.Windows.Forms.Button boton_subirfoto;
-        private System.Windows.Forms.Button boton_buscar;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button btn_borrar;
+        private System.Windows.Forms.Button btn_editar;
+        private System.Windows.Forms.TextBox id;
     }
 }
 
