@@ -28,35 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txt_titulo = new System.Windows.Forms.TextBox();
+            this.txt_descrip = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.boton_guardar = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.cb_categoria = new System.Windows.Forms.ComboBox();
+            this.pb_foto = new System.Windows.Forms.PictureBox();
             this.boton_subirfoto = new System.Windows.Forms.Button();
             this.boton_buscar = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_foto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // textBox1
+            // txt_titulo
             // 
-            this.textBox1.Location = new System.Drawing.Point(136, 33);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(121, 20);
-            this.textBox1.TabIndex = 0;
+            this.txt_titulo.Location = new System.Drawing.Point(136, 33);
+            this.txt_titulo.Name = "txt_titulo";
+            this.txt_titulo.Size = new System.Drawing.Size(121, 20);
+            this.txt_titulo.TabIndex = 0;
             // 
-            // textBox2
+            // txt_descrip
             // 
-            this.textBox2.Location = new System.Drawing.Point(136, 93);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(121, 20);
-            this.textBox2.TabIndex = 1;
+            this.txt_descrip.Location = new System.Drawing.Point(136, 93);
+            this.txt_descrip.Name = "txt_descrip";
+            this.txt_descrip.Size = new System.Drawing.Size(121, 20);
+            this.txt_descrip.TabIndex = 1;
             // 
             // label1
             // 
@@ -104,26 +104,26 @@
             this.boton_guardar.UseVisualStyleBackColor = true;
             this.boton_guardar.Click += new System.EventHandler(this.button1_Click);
             // 
-            // comboBox1
+            // cb_categoria
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cb_categoria.FormattingEnabled = true;
+            this.cb_categoria.Items.AddRange(new object[] {
             "Terror",
             "Drama",
             "Psicología"});
-            this.comboBox1.Location = new System.Drawing.Point(136, 63);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 7;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.cb_categoria.Location = new System.Drawing.Point(136, 63);
+            this.cb_categoria.Name = "cb_categoria";
+            this.cb_categoria.Size = new System.Drawing.Size(121, 21);
+            this.cb_categoria.TabIndex = 7;
+            this.cb_categoria.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // pictureBox1
+            // pb_foto
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(136, 156);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(121, 156);
-            this.pictureBox1.TabIndex = 8;
-            this.pictureBox1.TabStop = false;
+            this.pb_foto.Location = new System.Drawing.Point(136, 156);
+            this.pb_foto.Name = "pb_foto";
+            this.pb_foto.Size = new System.Drawing.Size(121, 156);
+            this.pb_foto.TabIndex = 8;
+            this.pb_foto.TabStop = false;
             // 
             // boton_subirfoto
             // 
@@ -133,6 +133,7 @@
             this.boton_subirfoto.TabIndex = 9;
             this.boton_subirfoto.Text = "Seleccionar";
             this.boton_subirfoto.UseVisualStyleBackColor = true;
+            this.boton_subirfoto.Click += new System.EventHandler(this.boton_subirfoto_Click);
             // 
             // boton_buscar
             // 
@@ -149,8 +150,9 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(316, 73);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(472, 106);
+            this.dataGridView1.Size = new System.Drawing.Size(472, 157);
             this.dataGridView1.TabIndex = 11;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // Form1
             // 
@@ -160,19 +162,19 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.boton_buscar);
             this.Controls.Add(this.boton_subirfoto);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.pb_foto);
+            this.Controls.Add(this.cb_categoria);
             this.Controls.Add(this.boton_guardar);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txt_descrip);
+            this.Controls.Add(this.txt_titulo);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_foto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -181,15 +183,15 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txt_titulo;
+        private System.Windows.Forms.TextBox txt_descrip;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button boton_guardar;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ComboBox cb_categoria;
+        private System.Windows.Forms.PictureBox pb_foto;
         private System.Windows.Forms.Button boton_subirfoto;
         private System.Windows.Forms.Button boton_buscar;
         private System.Windows.Forms.DataGridView dataGridView1;
