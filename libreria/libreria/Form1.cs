@@ -152,14 +152,19 @@ namespace libreria
             conexion.Open();
             SqlCommand comando = new SqlCommand(query, conexion);
             flag = comando.ExecuteNonQuery();
-            if (flag == 1)
+
+            if(MessageBox.Show("¿Deseas eliminar el libro " + txt_titulo + "?","Confirmación", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                MessageBox.Show("Libro eliminado.");
+                if (flag == 1)
+                {
+                    MessageBox.Show("Libro eliminado.");
+                }
+                else
+                {
+                    MessageBox.Show("Error al eliminar.");
+                }
             }
-            else
-            {
-                MessageBox.Show("Error al eliminar.");
-            }
+          
 
             id.Text = "";
             datosTablas();
