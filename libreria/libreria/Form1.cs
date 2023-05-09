@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,7 +19,6 @@ namespace libreria
         public Form1()
         {
             InitializeComponent();
-
             datosTablas();
         }
 
@@ -102,8 +102,6 @@ namespace libreria
 
             int flag = 0;
 
-            
-
             string query = "UPDATE libros SET titulo = '"+txt_titulo.Text+"', categoria = '"+cb_categoria.SelectedIndex+ "', descripcion = '"+txt_descrip.Text+ "', img = '"+arreglo+"', ruta = '"+ImageUrl+"' WHERE id = '"+id.Text+"'";
             conexion.Open();
             SqlCommand comando = new SqlCommand(query,conexion);
@@ -131,9 +129,12 @@ namespace libreria
             adaptador.SelectCommand = comando;
             DataTable tabla = new DataTable();
 
+
             //Llenar la tabla
             adaptador.Fill(tabla);
             dataGridView1.DataSource = tabla;
+
+            dataGridView1.Columns[4].Visible = false;
 
         }
 
