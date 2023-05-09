@@ -62,7 +62,7 @@ namespace libreria
             }
             catch (Exception)
             {
-                MessageBox.Show("Error");
+                MessageBox.Show("Error al registrar");
             }
            
 
@@ -102,24 +102,25 @@ namespace libreria
 
             int flag = 0;
 
-            try{ 
+            
 
             string query = "UPDATE libros SET titulo = '"+txt_titulo.Text+"', categoria = '"+cb_categoria.SelectedIndex+ "', descripcion = '"+txt_descrip.Text+ "', img = '"+arreglo+"', ruta = '"+ImageUrl+"' WHERE id = '"+id.Text+"'";
             conexion.Open();
             SqlCommand comando = new SqlCommand(query,conexion);
             flag = comando.ExecuteNonQuery();
 
-            MessageBox.Show("Libro actualizado.");
-           
+            if(flag == 1)
+            {
+                MessageBox.Show("Libro actualizado.");
+            }
+            else
+            {
+                MessageBox.Show("Error al actualizar");
+            }
 
             limpiar();
             datosTablas();
-             }
-            catch (Exception)
-            {
-                MessageBox.Show("Error");
-            }
-
+           
 
         }
 
@@ -146,9 +147,28 @@ namespace libreria
 
         private void btn_borrar_Click(object sender, EventArgs e)
         {
-            string query = "DELETE FROM libros WHERE id = @id";
+            int flag = 0;
+            string query = "DELETE FROM libros WHERE id = '"+id.Text+"'";
             conexion.Open();
             SqlCommand comando = new SqlCommand(query, conexion);
+            flag = comando.ExecuteNonQuery();
+            if (flag == 1)
+            {
+                MessageBox.Show("Libro eliminado.");
+            }
+            else
+            {
+                MessageBox.Show("Error al eliminar.");
+            }
+
+            id.Text = "";
+            datosTablas();
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            MessageBox.Show("Para Eliminar o Editar tienes que colocar en este campo el id del libro.");
         }
     }
 }
