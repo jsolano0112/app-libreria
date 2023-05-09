@@ -57,11 +57,8 @@ namespace libreria
                 comando.Parameters.AddWithValue("@ruta", ImageUrl);
                 comando.ExecuteNonQuery();
                 MessageBox.Show("Libro registrado.");
-
-                txt_titulo.Text = "";
-                cb_categoria.SelectedIndex = 0;
-                txt_descrip.Text = "";
-                pb_foto.Image = null;
+                limpiar();
+                datosTablas();
             }
             catch (Exception)
             {
@@ -80,7 +77,7 @@ namespace libreria
 
         private void boton_subirfoto_Click(object sender, EventArgs e)
         {
-            
+            //abrir el dialogo para que se pueda extraer el archivo
             using(OpenFileDialog ofd = new OpenFileDialog())
             {
                 if(ofd.ShowDialog() == DialogResult.OK)
@@ -103,18 +100,26 @@ namespace libreria
             ImageConverter convertidor = new ImageConverter();
             arreglo = (byte[])convertidor.ConvertTo(img, typeof(byte[]));
 
-            string query = "  UPDATE libros SET titulo = @titulo, categoria = @categoria, descripcion = @descripcion, img = @img, ruta = @ruta WHERE id = @id";
+            int flag = 0;
+
+            try{ 
+
+            string query = "UPDATE libros SET titulo = '"+txt_titulo.Text+"', categoria = '"+cb_categoria.SelectedIndex+ "', descripcion = '"+txt_descrip.Text+ "', img = '"+arreglo+"', ruta = '"+ImageUrl+"' WHERE id = '"+id.Text+"'";
             conexion.Open();
             SqlCommand comando = new SqlCommand(query,conexion);
-            comando.Parameters.AddWithValue("@titulo", txt_titulo.Text);
-            comando.Parameters.AddWithValue("@categoria", cb_categoria.SelectedIndex);
-            comando.Parameters.AddWithValue("@descripcion", txt_descrip.Text);
-            comando.Parameters.AddWithValue("@img", arreglo);
-            comando.Parameters.AddWithValue("@ruta", ImageUrl);
-            comando.Parameters.AddWithValue("@id", id.Text);
-            comando.ExecuteNonQuery();
-            conexion.Close();
+            flag = comando.ExecuteNonQuery();
+
             MessageBox.Show("Libro actualizado.");
+           
+
+            limpiar();
+            datosTablas();
+             }
+            catch (Exception)
+            {
+                MessageBox.Show("Error");
+            }
+
 
         }
 
@@ -129,6 +134,21 @@ namespace libreria
             adaptador.Fill(tabla);
             dataGridView1.DataSource = tabla;
 
+        }
+
+        private void limpiar()
+        {
+            txt_titulo.Text = "";
+            cb_categoria.SelectedIndex = 0;
+            txt_descrip.Text = "";
+            pb_foto.Image = null;
+        }
+
+        private void btn_borrar_Click(object sender, EventArgs e)
+        {
+            string query = "DELETE FROM libros WHERE id = @id";
+            conexion.Open();
+            SqlCommand comando = new SqlCommand(query, conexion);
         }
     }
 }

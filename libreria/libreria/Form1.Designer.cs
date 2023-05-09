@@ -148,16 +148,17 @@
             // 
             // btn_borrar
             // 
-            this.btn_borrar.Location = new System.Drawing.Point(407, 266);
+            this.btn_borrar.Location = new System.Drawing.Point(564, 266);
             this.btn_borrar.Name = "btn_borrar";
             this.btn_borrar.Size = new System.Drawing.Size(75, 23);
             this.btn_borrar.TabIndex = 12;
             this.btn_borrar.Text = "Borrar";
             this.btn_borrar.UseVisualStyleBackColor = true;
+            this.btn_borrar.Click += new System.EventHandler(this.btn_borrar_Click);
             // 
             // btn_editar
             // 
-            this.btn_editar.Location = new System.Drawing.Point(316, 266);
+            this.btn_editar.Location = new System.Drawing.Point(440, 266);
             this.btn_editar.Name = "btn_editar";
             this.btn_editar.Size = new System.Drawing.Size(75, 23);
             this.btn_editar.TabIndex = 13;
@@ -177,7 +178,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 347);
             this.Controls.Add(this.id);
             this.Controls.Add(this.btn_editar);
             this.Controls.Add(this.btn_borrar);
