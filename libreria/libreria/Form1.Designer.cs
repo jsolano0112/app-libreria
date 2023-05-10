@@ -43,8 +43,18 @@
             this.btn_editar = new System.Windows.Forms.Button();
             this.id = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.txt_buscar = new System.Windows.Forms.TextBox();
+            this.btn_buscar = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.btn_descargar = new System.Windows.Forms.Button();
+            this.txt_rutaArchivo = new System.Windows.Forms.TextBox();
+            this.btn_archivo = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pb_foto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // txt_titulo
@@ -99,9 +109,9 @@
             // 
             // boton_guardar
             // 
-            this.boton_guardar.Location = new System.Drawing.Point(154, 318);
+            this.boton_guardar.Location = new System.Drawing.Point(136, 375);
             this.boton_guardar.Name = "boton_guardar";
-            this.boton_guardar.Size = new System.Drawing.Size(75, 23);
+            this.boton_guardar.Size = new System.Drawing.Size(121, 23);
             this.boton_guardar.TabIndex = 6;
             this.boton_guardar.Text = "Guardar";
             this.boton_guardar.UseVisualStyleBackColor = true;
@@ -122,9 +132,9 @@
             // 
             // pb_foto
             // 
-            this.pb_foto.Location = new System.Drawing.Point(136, 156);
+            this.pb_foto.Location = new System.Drawing.Point(56, 156);
             this.pb_foto.Name = "pb_foto";
-            this.pb_foto.Size = new System.Drawing.Size(121, 156);
+            this.pb_foto.Size = new System.Drawing.Size(201, 156);
             this.pb_foto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pb_foto.TabIndex = 8;
             this.pb_foto.TabStop = false;
@@ -186,11 +196,98 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
+            // txt_buscar
+            // 
+            this.txt_buscar.Location = new System.Drawing.Point(571, 446);
+            this.txt_buscar.Name = "txt_buscar";
+            this.txt_buscar.Size = new System.Drawing.Size(161, 20);
+            this.txt_buscar.TabIndex = 16;
+            // 
+            // btn_buscar
+            // 
+            this.btn_buscar.Location = new System.Drawing.Point(738, 443);
+            this.btn_buscar.Name = "btn_buscar";
+            this.btn_buscar.Size = new System.Drawing.Size(30, 23);
+            this.btn_buscar.TabIndex = 17;
+            this.btn_buscar.Text = "buscar";
+            this.btn_buscar.UseVisualStyleBackColor = true;
+            this.btn_buscar.Click += new System.EventHandler(this.btn_buscar_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(56, 472);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(272, 165);
+            this.pictureBox1.TabIndex = 18;
+            this.pictureBox1.TabStop = false;
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(361, 472);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(407, 194);
+            this.richTextBox1.TabIndex = 19;
+            this.richTextBox1.Text = "";
+            // 
+            // btn_descargar
+            // 
+            this.btn_descargar.Location = new System.Drawing.Point(154, 643);
+            this.btn_descargar.Name = "btn_descargar";
+            this.btn_descargar.Size = new System.Drawing.Size(75, 23);
+            this.btn_descargar.TabIndex = 20;
+            this.btn_descargar.Text = "Descargar";
+            this.btn_descargar.UseVisualStyleBackColor = true;
+            // 
+            // txt_rutaArchivo
+            // 
+            this.txt_rutaArchivo.Location = new System.Drawing.Point(136, 349);
+            this.txt_rutaArchivo.Name = "txt_rutaArchivo";
+            this.txt_rutaArchivo.Size = new System.Drawing.Size(121, 20);
+            this.txt_rutaArchivo.TabIndex = 21;
+            this.txt_rutaArchivo.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // btn_archivo
+            // 
+            this.btn_archivo.Location = new System.Drawing.Point(136, 320);
+            this.btn_archivo.Name = "btn_archivo";
+            this.btn_archivo.Size = new System.Drawing.Size(121, 23);
+            this.btn_archivo.TabIndex = 22;
+            this.btn_archivo.Text = "Examinar";
+            this.btn_archivo.UseVisualStyleBackColor = true;
+            this.btn_archivo.Click += new System.EventHandler(this.btn_archivo_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(53, 325);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(62, 13);
+            this.label5.TabIndex = 23;
+            this.label5.Text = "Documento";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(53, 352);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(30, 13);
+            this.label6.TabIndex = 25;
+            this.label6.Text = "Ruta";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 398);
+            this.ClientSize = new System.Drawing.Size(800, 678);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.btn_archivo);
+            this.Controls.Add(this.txt_rutaArchivo);
+            this.Controls.Add(this.btn_descargar);
+            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.btn_buscar);
+            this.Controls.Add(this.txt_buscar);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.id);
             this.Controls.Add(this.btn_editar);
@@ -211,6 +308,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pb_foto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -233,6 +331,15 @@
         private System.Windows.Forms.Button btn_editar;
         private System.Windows.Forms.TextBox id;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txt_buscar;
+        private System.Windows.Forms.Button btn_buscar;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Button btn_descargar;
+        private System.Windows.Forms.TextBox txt_rutaArchivo;
+        private System.Windows.Forms.Button btn_archivo;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
     }
 }
 

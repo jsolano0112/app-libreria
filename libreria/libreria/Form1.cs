@@ -4,18 +4,22 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace libreria
 {
     public partial class Form1 : Form
     {
         SqlConnection conexion = new SqlConnection("server=DESKTOP-O5BFFDF; database=libreria; integrated security=true");
+        libro lb = new libro();
         string ImageUrl = null;
+        OpenFileDialog openFileDialog1 = new OpenFileDialog();
         public Form1()
         {
             InitializeComponent();
@@ -39,21 +43,31 @@ namespace libreria
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //para guardar imagen
             Image img = pb_foto.Image;
             byte[] arreglo;
             ImageConverter convertidor = new ImageConverter();
             arreglo = (byte[])convertidor.ConvertTo(img, typeof(byte[]));
 
-            string query = "INSERT INTO libros(titulo, categoria, descripcion, img, ruta) VALUES('"+txt_titulo.Text+"', '"+cb_categoria.SelectedIndex+ "', '"+txt_descrip.Text +"', '"+arreglo+"', '"+ImageUrl+"')";
-            conexion.Open();
+            //para guardar archivo
+            byte[] archivo = null;
+            Stream MyStream = openFileDialog1.OpenFile();
+            MemoryStream obj = new MemoryStream();
+            MyStream.CopyTo(obj);
+            archivo = obj.ToArray();
 
-            SqlCommand comando = new SqlCommand(query, conexion);
+            lb.Titulo = txt_titulo.Text;
+            lb.Categoria = cb_categoria.SelectedIndex;
+            lb.Descripcion = txt_descrip.Text;
+            lb.Imagen = arreglo;
+            lb.Ruta = ImageUrl;
+            lb.Documento = archivo;
+            lb.Extension = openFileDialog1.SafeFileName;
 
-            comando.ExecuteNonQuery();
-            MessageBox.Show("Libro registrado.");
+            MessageBox.Show(lb.AgregarLibro());
             limpiar();
             datosTablas();
-            conexion.Close();
+            
 
 
 
@@ -86,30 +100,32 @@ namespace libreria
 
         private void btn_editar_Click(object sender, EventArgs e)
         {
+            //para guardar imagen
             Image img = pb_foto.Image;
             byte[] arreglo;
             ImageConverter convertidor = new ImageConverter();
             arreglo = (byte[])convertidor.ConvertTo(img, typeof(byte[]));
 
-            int flag = 0;
+            //para guardar archivo
+            byte[] archivo = null;
+            Stream MyStream = openFileDialog1.OpenFile();
+            MemoryStream obj = new MemoryStream();
+            MyStream.CopyTo(obj);
+            archivo = obj.ToArray();
 
-            string query = "UPDATE libros SET titulo = '"+txt_titulo.Text+"', categoria = '"+cb_categoria.SelectedIndex+ "', descripcion = '"+txt_descrip.Text+ "', img = '"+arreglo+"', ruta = '"+ImageUrl+"' WHERE id = '"+id.Text+"'";
-            conexion.Open();
-            SqlCommand comando = new SqlCommand(query,conexion);
-            flag = comando.ExecuteNonQuery();
+            lb.Id = Int32.Parse(id.Text);
+            lb.Titulo = txt_titulo.Text;
+            lb.Categoria = cb_categoria.SelectedIndex;
+            lb.Descripcion = txt_descrip.Text;
+            lb.Imagen = arreglo;
+            lb.Ruta = ImageUrl;
+            lb.Documento = archivo;
+            lb.Extension = openFileDialog1.SafeFileName;
 
-            if(flag == 1)
-            {
-                MessageBox.Show("Libro actualizado.");
-            }
-            else
-            {
-                MessageBox.Show("Error al actualizar");
-            }
-
+            MessageBox.Show(lb.ActualizarLibro());
             limpiar();
             datosTablas();
-            conexion.Close();
+
 
 
         }
@@ -127,6 +143,9 @@ namespace libreria
             dataGridView1.DataSource = tabla;
 
             dataGridView1.Columns[4].Visible = false;
+            dataGridView1.Columns[5].Visible = false;
+            dataGridView1.Columns[6].Visible = false;
+            dataGridView1.Columns[7].Visible = false;
 
         }
 
@@ -136,28 +155,16 @@ namespace libreria
             cb_categoria.SelectedIndex = 0;
             txt_descrip.Text = "";
             pb_foto.Image = null;
+            txt_rutaArchivo.Text = "";
+
+
         }
 
         private void btn_borrar_Click(object sender, EventArgs e)
         {
-            int flag = 0;
-            string query = "DELETE FROM libros WHERE id = '"+id.Text+"'";
-            conexion.Open();
-            SqlCommand comando = new SqlCommand(query, conexion);
-            flag = comando.ExecuteNonQuery();
 
-            if(MessageBox.Show("¿Deseas eliminar el libro " + txt_titulo + "?","Confirmación", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                if (flag == 1)
-                {
-                    MessageBox.Show("Libro eliminado.");
-                }
-                else
-                {
-                    MessageBox.Show("Error al eliminar.");
-                }
-            }
-          
+            lb.Id = Int32.Parse(id.Text);
+            MessageBox.Show(lb.EliminarLibro());
 
             id.Text = "";
             datosTablas();
@@ -168,6 +175,32 @@ namespace libreria
         private void button1_Click_1(object sender, EventArgs e)
         {
             MessageBox.Show("Para Eliminar o Editar tienes que colocar en este campo el id del libro.");
+        }
+
+        private void btn_buscar_Click(object sender, EventArgs e)
+        {
+            if(txt_buscar.Text != "")
+            {
+                SqlCommand comando = new SqlCommand("SELECT * FROM libros WHERE titulo = '"+txt_buscar.Text+"'", conexion);
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_archivo_Click(object sender, EventArgs e)
+        {
+           
+            openFileDialog1.InitialDirectory = "C:\\Documentos";
+            openFileDialog1.Filter = "Todos los archivos (*.*)|*.*";
+            openFileDialog1.FilterIndex = 1;
+
+            if(openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                txt_rutaArchivo.Text = openFileDialog1.FileName;
+            }
         }
     }
 }
