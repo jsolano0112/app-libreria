@@ -44,27 +44,18 @@ namespace libreria
             ImageConverter convertidor = new ImageConverter();
             arreglo = (byte[])convertidor.ConvertTo(img, typeof(byte[]));
 
-            try
-            {
-                string query = "INSERT INTO libros(titulo, categoria, descripcion, img, ruta) VALUES(@titulo, @categoria, @descripcion, @imagen, @ruta)";
-                conexion.Open();
+            string query = "INSERT INTO libros(titulo, categoria, descripcion, img, ruta) VALUES('"+txt_titulo.Text+"', '"+cb_categoria.SelectedIndex+ "', '"+txt_descrip.Text +"', '"+arreglo+"', '"+ImageUrl+"')";
+            conexion.Open();
 
-                SqlCommand comando = new SqlCommand(query, conexion);
-                comando.Parameters.AddWithValue("@titulo", txt_titulo.Text);
-                comando.Parameters.AddWithValue("@categoria", cb_categoria.SelectedIndex);
-                comando.Parameters.AddWithValue("@descripcion", txt_descrip.Text);
-                comando.Parameters.AddWithValue("@imagen", arreglo);
-                comando.Parameters.AddWithValue("@ruta", ImageUrl);
-                comando.ExecuteNonQuery();
-                MessageBox.Show("Libro registrado.");
-                limpiar();
-                datosTablas();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Error al registrar");
-            }
-           
+            SqlCommand comando = new SqlCommand(query, conexion);
+
+            comando.ExecuteNonQuery();
+            MessageBox.Show("Libro registrado.");
+            limpiar();
+            datosTablas();
+            conexion.Close();
+
+
 
 
 
@@ -118,7 +109,8 @@ namespace libreria
 
             limpiar();
             datosTablas();
-           
+            conexion.Close();
+
 
         }
 
@@ -169,6 +161,7 @@ namespace libreria
 
             id.Text = "";
             datosTablas();
+            conexion.Close();
 
         }
 
