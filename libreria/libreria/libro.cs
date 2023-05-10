@@ -101,5 +101,42 @@ namespace libreria
             return "Libro eliminado.";
         }
 
+        public DataTable LibroPorNombre()
+        {
+            DataTable tabla = new DataTable();
+            conexion.Open();
+            SqlCommand comando = new SqlCommand("SELECT * FROM libros WHERE id = @id", conexion);
+            comando.CommandType = CommandType.Text;
+            comando.Parameters.AddWithValue("@id", Id);
+            SqlDataReader lector = comando.ExecuteReader();
+            tabla.Load(lector);
+            lector.Close();
+            conexion.Close();
+            return tabla;
+        }
+
+        public List<libro> FiltroLibros()
+        {
+            var tabla = LibroPorNombre();
+            var infoLibro = new List<libro>();
+
+            foreach(DataRow item in tabla.Rows)
+            {
+                infoLibro.Add(new libro
+                {
+                    Id = Convert.ToInt32(item[0]),
+                    Titulo = item[1].ToString(),
+                    Categoria = Convert.ToInt32(item[2]),
+                    Descripcion = item[3].ToString(),
+                    Imagen = (byte[])item[4],
+                    Ruta = item[5].ToString(),
+                    Documento = (byte[])item[6],
+                    Extension = item[7].ToString(),
+                });
+            }
+
+            return infoLibro;
+        }
+
     }
 }

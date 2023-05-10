@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -181,7 +182,7 @@ namespace libreria
         {
             if(txt_buscar.Text != "")
             {
-                SqlCommand comando = new SqlCommand("SELECT * FROM libros WHERE titulo = '"+txt_buscar.Text+"'", conexion);
+                
             }
         }
 
@@ -200,6 +201,35 @@ namespace libreria
             if(openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 txt_rutaArchivo.Text = openFileDialog1.FileName;
+            }
+        }
+
+        private void btn_descargar_Click(object sender, EventArgs e)
+        {
+            if(dataGridView1.SelectedRows.Count > 0)
+            {
+                int id = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value.ToString());
+                lb.Id = id;
+                var Lista = new List<libro>();
+                Lista = lb.FiltroLibros();
+
+                foreach(libro item in Lista)
+                {
+                    string direccion = AppDomain.CurrentDomain.BaseDirectory;
+                    string carpeta = direccion + "/temp/";
+                    string ubicacionCompleta = carpeta + item.Extension;
+
+
+                   if(!Directory.Exists(carpeta))
+                         Directory.CreateDirectory(carpeta);
+
+                    
+                   if(File.Exists(ubicacionCompleta))
+                        File.Delete(ubicacionCompleta);
+
+                    File.WriteAllBytes(ubicacionCompleta, item.Documento);
+                    Process.Start(ubicacionCompleta);
+                 }
             }
         }
     }

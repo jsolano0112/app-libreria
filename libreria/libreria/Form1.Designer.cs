@@ -152,15 +152,15 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(316, 12);
+            this.dataGridView1.Location = new System.Drawing.Point(316, 39);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(452, 239);
+            this.dataGridView1.Size = new System.Drawing.Size(444, 359);
             this.dataGridView1.TabIndex = 11;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // btn_borrar
             // 
-            this.btn_borrar.Location = new System.Drawing.Point(564, 266);
+            this.btn_borrar.Location = new System.Drawing.Point(289, 8);
             this.btn_borrar.Name = "btn_borrar";
             this.btn_borrar.Size = new System.Drawing.Size(75, 23);
             this.btn_borrar.TabIndex = 12;
@@ -170,7 +170,7 @@
             // 
             // btn_editar
             // 
-            this.btn_editar.Location = new System.Drawing.Point(440, 266);
+            this.btn_editar.Location = new System.Drawing.Point(208, 7);
             this.btn_editar.Name = "btn_editar";
             this.btn_editar.Size = new System.Drawing.Size(75, 23);
             this.btn_editar.TabIndex = 13;
@@ -198,14 +198,14 @@
             // 
             // txt_buscar
             // 
-            this.txt_buscar.Location = new System.Drawing.Point(571, 446);
+            this.txt_buscar.Location = new System.Drawing.Point(563, 10);
             this.txt_buscar.Name = "txt_buscar";
             this.txt_buscar.Size = new System.Drawing.Size(161, 20);
             this.txt_buscar.TabIndex = 16;
             // 
             // btn_buscar
             // 
-            this.btn_buscar.Location = new System.Drawing.Point(738, 443);
+            this.btn_buscar.Location = new System.Drawing.Point(730, 10);
             this.btn_buscar.Name = "btn_buscar";
             this.btn_buscar.Size = new System.Drawing.Size(30, 23);
             this.btn_buscar.TabIndex = 17;
@@ -215,15 +215,15 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(56, 472);
+            this.pictureBox1.Location = new System.Drawing.Point(56, 443);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(272, 165);
+            this.pictureBox1.Size = new System.Drawing.Size(272, 194);
             this.pictureBox1.TabIndex = 18;
             this.pictureBox1.TabStop = false;
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(361, 472);
+            this.richTextBox1.Location = new System.Drawing.Point(353, 443);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(407, 194);
             this.richTextBox1.TabIndex = 19;
@@ -237,6 +237,7 @@
             this.btn_descargar.TabIndex = 20;
             this.btn_descargar.Text = "Descargar";
             this.btn_descargar.UseVisualStyleBackColor = true;
+            this.btn_descargar.Click += new System.EventHandler(this.btn_descargar_Click);
             // 
             // txt_rutaArchivo
             // 
