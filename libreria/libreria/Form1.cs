@@ -133,20 +133,42 @@ namespace libreria
 
         private void datosTablas()
         {
-            SqlCommand comando = new SqlCommand("SELECT * FROM libros", conexion);
-            SqlDataAdapter adaptador = new SqlDataAdapter();
-            adaptador.SelectCommand = comando;
-            DataTable tabla = new DataTable();
+
+            if(txt_buscar.Text == "")
+            {
+                SqlCommand comando = new SqlCommand("SELECT * FROM libros", conexion);
+                SqlDataAdapter adaptador = new SqlDataAdapter();
+                adaptador.SelectCommand = comando;
+                DataTable tabla = new DataTable();
 
 
-            //Llenar la tabla
-            adaptador.Fill(tabla);
-            dataGridView1.DataSource = tabla;
+                //Llenar la tabla
+                adaptador.Fill(tabla);
+                dataGridView1.DataSource = tabla;
 
-            dataGridView1.Columns[4].Visible = false;
-            dataGridView1.Columns[5].Visible = false;
-            dataGridView1.Columns[6].Visible = false;
-            dataGridView1.Columns[7].Visible = false;
+                dataGridView1.Columns[4].Visible = false;
+                dataGridView1.Columns[5].Visible = false;
+                dataGridView1.Columns[6].Visible = false;
+                dataGridView1.Columns[7].Visible = false;
+            }
+            else
+            {
+                SqlCommand comando = new SqlCommand("SELECT * FROM libros WHERE titulo LIKE '%"+txt_buscar.Text+"%'", conexion);
+                SqlDataAdapter adaptador = new SqlDataAdapter();
+                adaptador.SelectCommand = comando;
+                DataTable tabla = new DataTable();
+
+
+                //Llenar la tabla
+                adaptador.Fill(tabla);
+                dataGridView1.DataSource = tabla;
+
+                dataGridView1.Columns[4].Visible = false;
+                dataGridView1.Columns[5].Visible = false;
+                dataGridView1.Columns[6].Visible = false;
+                dataGridView1.Columns[7].Visible = false;
+            }
+            
 
         }
 
@@ -231,6 +253,11 @@ namespace libreria
                     Process.Start(ubicacionCompleta);
                  }
             }
+        }
+
+        private void txt_buscar_TextChanged(object sender, EventArgs e)
+        {
+            datosTablas();
         }
     }
 }

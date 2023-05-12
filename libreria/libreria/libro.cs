@@ -101,7 +101,9 @@ namespace libreria
             return "Libro eliminado.";
         }
 
-        public DataTable LibroPorNombre()
+      
+
+        public DataTable LibroPorId()
         {
             DataTable tabla = new DataTable();
             conexion.Open();
@@ -117,7 +119,7 @@ namespace libreria
 
         public List<libro> FiltroLibros()
         {
-            var tabla = LibroPorNombre();
+            var tabla = LibroPorId();
             var infoLibro = new List<libro>();
 
             foreach(DataRow item in tabla.Rows)

@@ -202,6 +202,7 @@
             this.txt_buscar.Name = "txt_buscar";
             this.txt_buscar.Size = new System.Drawing.Size(161, 20);
             this.txt_buscar.TabIndex = 16;
+            this.txt_buscar.TextChanged += new System.EventHandler(this.txt_buscar_TextChanged);
             // 
             // btn_buscar
             // 
