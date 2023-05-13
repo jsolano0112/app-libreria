@@ -68,7 +68,7 @@ namespace libreria
             MessageBox.Show(lb.AgregarLibro());
             limpiar();
             datosTablas();
-            
+
 
 
 
@@ -78,15 +78,15 @@ namespace libreria
 
         private void button3_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void boton_subirfoto_Click(object sender, EventArgs e)
         {
             //abrir el dialogo para que se pueda extraer el archivo
-            using(OpenFileDialog ofd = new OpenFileDialog())
+            using (OpenFileDialog ofd = new OpenFileDialog())
             {
-                if(ofd.ShowDialog() == DialogResult.OK)
+                if (ofd.ShowDialog() == DialogResult.OK)
                 {
                     ImageUrl = ofd.FileName;
                     pb_foto.Image = Image.FromFile(ofd.FileName);
@@ -96,7 +96,7 @@ namespace libreria
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
         }
 
         private void btn_editar_Click(object sender, EventArgs e)
@@ -134,7 +134,7 @@ namespace libreria
         private void datosTablas()
         {
 
-            if(txt_buscar.Text == "")
+            if (txt_buscar.Text == "")
             {
                 SqlCommand comando = new SqlCommand("SELECT * FROM libros", conexion);
                 SqlDataAdapter adaptador = new SqlDataAdapter();
@@ -153,7 +153,7 @@ namespace libreria
             }
             else
             {
-                SqlCommand comando = new SqlCommand("SELECT * FROM libros WHERE titulo LIKE '%"+txt_buscar.Text+"%'", conexion);
+                SqlCommand comando = new SqlCommand("SELECT * FROM libros WHERE titulo LIKE '%" + txt_buscar.Text + "%'", conexion);
                 SqlDataAdapter adaptador = new SqlDataAdapter();
                 adaptador.SelectCommand = comando;
                 DataTable tabla = new DataTable();
@@ -168,7 +168,7 @@ namespace libreria
                 dataGridView1.Columns[6].Visible = false;
                 dataGridView1.Columns[7].Visible = false;
             }
-            
+
 
         }
 
@@ -202,9 +202,9 @@ namespace libreria
 
         private void btn_buscar_Click(object sender, EventArgs e)
         {
-            if(txt_buscar.Text != "")
+            if (txt_buscar.Text != "")
             {
-                
+
             }
         }
 
@@ -215,12 +215,12 @@ namespace libreria
 
         private void btn_archivo_Click(object sender, EventArgs e)
         {
-           
+
             openFileDialog1.InitialDirectory = "C:\\Documentos";
             openFileDialog1.Filter = "Todos los archivos (*.*)|*.*";
             openFileDialog1.FilterIndex = 1;
 
-            if(openFileDialog1.ShowDialog() == DialogResult.OK)
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 txt_rutaArchivo.Text = openFileDialog1.FileName;
             }
@@ -228,36 +228,86 @@ namespace libreria
 
         private void btn_descargar_Click(object sender, EventArgs e)
         {
-            if(dataGridView1.SelectedRows.Count > 0)
+            if (dataGridView1.SelectedRows.Count > 0)
             {
                 int id = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value.ToString());
                 lb.Id = id;
                 var Lista = new List<libro>();
                 Lista = lb.FiltroLibros();
 
-                foreach(libro item in Lista)
+                foreach (libro item in Lista)
                 {
                     string direccion = AppDomain.CurrentDomain.BaseDirectory;
                     string carpeta = direccion + "/temp/";
                     string ubicacionCompleta = carpeta + item.Extension;
 
 
-                   if(!Directory.Exists(carpeta))
-                         Directory.CreateDirectory(carpeta);
+                    if (!Directory.Exists(carpeta))
+                        Directory.CreateDirectory(carpeta);
 
-                    
-                   if(File.Exists(ubicacionCompleta))
+
+                    if (File.Exists(ubicacionCompleta))
                         File.Delete(ubicacionCompleta);
 
                     File.WriteAllBytes(ubicacionCompleta, item.Documento);
                     Process.Start(ubicacionCompleta);
-                 }
+                }
             }
         }
 
         private void txt_buscar_TextChanged(object sender, EventArgs e)
         {
             datosTablas();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        public void extraerImgDes()
+        {
+
+
+       
+            //if (dataGridView1.SelectedRows.Count > 0)
+            //{
+            //    SqlCommand comando = new SqlCommand("SELECT img, descripcion FROM libros WHERE id = '6'", conexion);
+            //    SqlDataAdapter dp = new SqlDataAdapter(comando);
+            //    DataSet ds = new DataSet("libros");
+            //    SqlDataReader registros = comando.ExecuteReader();
+
+            //    byte[] md = new byte[0];
+            //    dp.Fill(ds, "libros");
+            //    DataRow myRow = ds.Tables["libros"].Rows[0];
+            //    md = (byte[])myRow["img"];
+            //    MemoryStream ms = new MemoryStream(md);
+
+            //    pb_extraer.Image = Image.FromStream(ms);
+
+            //    richTextBox1.AppendText(registros["descripcion"].ToString());
+            //}
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                richTextBox1.Text = "";
+                string descr = this.dataGridView1.SelectedRows[0].Cells[3].Value.ToString();
+              
+                richTextBox1.AppendText(descr);
+
+            }
+            catch (Exception)
+            {
+                return;
+            }
         }
     }
 }

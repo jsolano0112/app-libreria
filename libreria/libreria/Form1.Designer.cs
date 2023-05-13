@@ -44,8 +44,7 @@
             this.id = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.txt_buscar = new System.Windows.Forms.TextBox();
-            this.btn_buscar = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pb_extraer = new System.Windows.Forms.PictureBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.btn_descargar = new System.Windows.Forms.Button();
             this.txt_rutaArchivo = new System.Windows.Forms.TextBox();
@@ -54,7 +53,7 @@
             this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pb_foto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_extraer)).BeginInit();
             this.SuspendLayout();
             // 
             // txt_titulo
@@ -152,11 +151,14 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(316, 39);
+            this.dataGridView1.Location = new System.Drawing.Point(353, 39);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(444, 359);
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(407, 359);
             this.dataGridView1.TabIndex = 11;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
             // btn_borrar
             // 
@@ -200,27 +202,18 @@
             // 
             this.txt_buscar.Location = new System.Drawing.Point(563, 10);
             this.txt_buscar.Name = "txt_buscar";
-            this.txt_buscar.Size = new System.Drawing.Size(161, 20);
+            this.txt_buscar.Size = new System.Drawing.Size(197, 20);
             this.txt_buscar.TabIndex = 16;
             this.txt_buscar.TextChanged += new System.EventHandler(this.txt_buscar_TextChanged);
             // 
-            // btn_buscar
+            // pb_extraer
             // 
-            this.btn_buscar.Location = new System.Drawing.Point(730, 10);
-            this.btn_buscar.Name = "btn_buscar";
-            this.btn_buscar.Size = new System.Drawing.Size(30, 23);
-            this.btn_buscar.TabIndex = 17;
-            this.btn_buscar.Text = "buscar";
-            this.btn_buscar.UseVisualStyleBackColor = true;
-            this.btn_buscar.Click += new System.EventHandler(this.btn_buscar_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(56, 443);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(272, 194);
-            this.pictureBox1.TabIndex = 18;
-            this.pictureBox1.TabStop = false;
+            this.pb_extraer.Location = new System.Drawing.Point(56, 443);
+            this.pb_extraer.Name = "pb_extraer";
+            this.pb_extraer.Size = new System.Drawing.Size(272, 194);
+            this.pb_extraer.TabIndex = 18;
+            this.pb_extraer.TabStop = false;
+            this.pb_extraer.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // richTextBox1
             // 
@@ -229,6 +222,7 @@
             this.richTextBox1.Size = new System.Drawing.Size(407, 194);
             this.richTextBox1.TabIndex = 19;
             this.richTextBox1.Text = "";
+            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
             // btn_descargar
             // 
@@ -236,7 +230,7 @@
             this.btn_descargar.Name = "btn_descargar";
             this.btn_descargar.Size = new System.Drawing.Size(75, 23);
             this.btn_descargar.TabIndex = 20;
-            this.btn_descargar.Text = "Descargar";
+            this.btn_descargar.Text = "Mostrar";
             this.btn_descargar.UseVisualStyleBackColor = true;
             this.btn_descargar.Click += new System.EventHandler(this.btn_descargar_Click);
             // 
@@ -287,8 +281,7 @@
             this.Controls.Add(this.txt_rutaArchivo);
             this.Controls.Add(this.btn_descargar);
             this.Controls.Add(this.richTextBox1);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.btn_buscar);
+            this.Controls.Add(this.pb_extraer);
             this.Controls.Add(this.txt_buscar);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.id);
@@ -310,7 +303,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pb_foto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_extraer)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -334,8 +327,7 @@
         private System.Windows.Forms.TextBox id;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox txt_buscar;
-        private System.Windows.Forms.Button btn_buscar;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pb_extraer;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Button btn_descargar;
         private System.Windows.Forms.TextBox txt_rutaArchivo;
