@@ -172,6 +172,7 @@ namespace libreria
 
         }
 
+        //para limpiar los campos cuando ya se haya guardado o actualizado
         private void limpiar()
         {
             txt_titulo.Text = "";
@@ -200,14 +201,7 @@ namespace libreria
             MessageBox.Show("Para Eliminar o Editar tienes que colocar en este campo el id del libro.");
         }
 
-        private void btn_buscar_Click(object sender, EventArgs e)
-        {
-            if (txt_buscar.Text != "")
-            {
-
-            }
-        }
-
+  
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
@@ -215,7 +209,7 @@ namespace libreria
 
         private void btn_archivo_Click(object sender, EventArgs e)
         {
-
+            //dialogo para escoger el archivo
             openFileDialog1.InitialDirectory = "C:\\Documentos";
             openFileDialog1.Filter = "Todos los archivos (*.*)|*.*";
             openFileDialog1.FilterIndex = 1;
@@ -270,23 +264,6 @@ namespace libreria
 
 
        
-            //if (dataGridView1.SelectedRows.Count > 0)
-            //{
-            //    SqlCommand comando = new SqlCommand("SELECT img, descripcion FROM libros WHERE id = '6'", conexion);
-            //    SqlDataAdapter dp = new SqlDataAdapter(comando);
-            //    DataSet ds = new DataSet("libros");
-            //    SqlDataReader registros = comando.ExecuteReader();
-
-            //    byte[] md = new byte[0];
-            //    dp.Fill(ds, "libros");
-            //    DataRow myRow = ds.Tables["libros"].Rows[0];
-            //    md = (byte[])myRow["img"];
-            //    MemoryStream ms = new MemoryStream(md);
-
-            //    pb_extraer.Image = Image.FromStream(ms);
-
-            //    richTextBox1.AppendText(registros["descripcion"].ToString());
-            //}
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
@@ -296,17 +273,36 @@ namespace libreria
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            //para agregar la descripción al campo de textos
             try
             {
                 richTextBox1.Text = "";
                 string descr = this.dataGridView1.SelectedRows[0].Cells[3].Value.ToString();
+                int id = Convert.ToInt32(this.dataGridView1.SelectedRows[0].Cells[0].Value);
               
                 richTextBox1.AppendText(descr);
 
+                conexion.Open();
+
+                SqlCommand comando = new SqlCommand("SELECT img FROM libros WHERE id = '"+id+"'", conexion);
+                SqlDataReader reader = comando.ExecuteReader();
+
+                if (reader.HasRows) {
+                    reader.Read();
+                    MemoryStream ms  = new MemoryStream((byte[])reader["img"]);
+                    Bitmap bm = new Bitmap(ms);
+                    pb_extraer.Image = bm;
+                }
+                else
+                {
+                    MessageBox.Show("No se encontraron registros");
+                }
+
+                conexion.Close();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return;
+                MessageBox.Show("No se pudo consultar la imagen"+ex.ToString());
             }
         }
     }

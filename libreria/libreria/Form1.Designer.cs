@@ -211,6 +211,7 @@
             this.pb_extraer.Location = new System.Drawing.Point(56, 443);
             this.pb_extraer.Name = "pb_extraer";
             this.pb_extraer.Size = new System.Drawing.Size(272, 194);
+            this.pb_extraer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pb_extraer.TabIndex = 18;
             this.pb_extraer.TabStop = false;
             this.pb_extraer.Click += new System.EventHandler(this.pictureBox1_Click);
