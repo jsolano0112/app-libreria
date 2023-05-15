@@ -25,6 +25,10 @@ namespace libreria
         {
             InitializeComponent();
             datosTablas();
+
+            Bitmap img = new Bitmap(Application.StartupPath + @"\img\fondo.jpg");
+            this.BackgroundImage = img;
+            this.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -278,13 +282,15 @@ namespace libreria
             {
                 richTextBox1.Text = "";
                 string descr = this.dataGridView1.SelectedRows[0].Cells[3].Value.ToString();
-                int id = Convert.ToInt32(this.dataGridView1.SelectedRows[0].Cells[0].Value);
+                int idRow = Convert.ToInt32(this.dataGridView1.SelectedRows[0].Cells[0].Value);
+
+                id.Text = Convert.ToString(idRow);
               
                 richTextBox1.AppendText(descr);
 
                 conexion.Open();
 
-                SqlCommand comando = new SqlCommand("SELECT img FROM libros WHERE id = '"+id+"'", conexion);
+                SqlCommand comando = new SqlCommand("SELECT img FROM libros WHERE id = '"+idRow+"'", conexion);
                 SqlDataReader reader = comando.ExecuteReader();
 
                 if (reader.HasRows) {
@@ -304,6 +310,16 @@ namespace libreria
             {
                 MessageBox.Show("No se pudo consultar la imagen"+ex.ToString());
             }
+        }
+
+        private void id_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
